@@ -1,2 +1,0 @@
-# test-meanApp
-mean test
