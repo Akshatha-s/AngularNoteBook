@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="notebookApp">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="js/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/controller.js"></script>
+</head>
+
+<body ng-controller="noteBookCtrl">
+
+	<div class="container-fluid">
+	<div class="col-md-12 well well-sm" style="background-color:#275073;border-top-width: 0px;margin-top: ‒0;margin-bottom: 0px;">
+	  <h4 style="color:white;">IBM Watson Health Informatics Visual Studio</h4>
+	 </div>
+		<div class="col-md-12 well well-lg">
+	    <button type="button" id="filterBtn" class="btn btn-info btn-lg" ng-click="showPanel()">
+			<span class="glyphicon glyphicon-filter" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;
+			Filters&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<span class="glyphicon glyphicon-chevron-down pull-right" aria-hidden="true"></span>
+		</button>
+		</div>
+	  <br><br>
+	  <div id="filterPanel" ng-hide="flag" class="row well well-lg">
+			<div class="col-md-1"></div>
+			<div class="col-md-2">
+			<h4 class="type">TYPE</h4>
+			<div class="checkbox">
+				<label><input type="checkbox" name="type" ng-model="my" ng-click="checkFunction()">My</label>
+			</div>
+			<div class="checkbox">
+				<label><input type="checkbox" name="type" ng-model="starter" ng-click="checkFunction()">Starter</label>
+			</div>
+			<div class="checkbox">
+				<label><input type="checkbox" name="type" ng-model="example" ng-click="checkFunction()">Example</label>
+			</div>
+			</div>
+			<div class="col-md-2">
+			<h4 class="type">LANGUAGE</h4>
+			<div class="checkbox">
+				<label><input type="checkbox" name="language" ng-model="python" ng-click="languageFunction()">Python</label>
+			</div>
+			<div class="checkbox">
+				<label><input type="checkbox" name="language" ng-model="sas" ng-click="languageFunction()">Sas</label>
+			</div>
+			</div>
+	  </div>
+		<div class="row">
+			<div ng-repeat="note in myArray | orderBy:'name'" ng-show="myFlag&&language.indexOf(note.language)!=-1">
+				<div id="my" class="panel panel-default col-md-2 col-md-offset-1">
+				<div class="panel-heading"><p style="color:#88328a;">{{note.type| uppercase}} NOTEBOOK </p><h5><strong>{{note.name}}</strong></h5></div>
+				<div class="panel-body"><strong>Language</strong><br><h4><small>{{note.language}}</small></h4></div>
+				</div>
+			</div>
+			<div ng-repeat="note in starterArray | orderBy:'name'" ng-show="starterFlag&&language.indexOf(note.language)!=-1">
+				<div id="starter" class="panel panel-default col-md-2 col-md-offset-1">
+				<div class="panel-heading"><p style="color:#4dafa6;">{{note.type| uppercase}} NOTEBOOK </p><h5><strong>{{note.name}}</strong></h5></div>
+				<div class="panel-body"><strong>Language</strong><br><h4><small>{{note.language}}</small></h4></div>
+				</div>
+			</div>
+			<div ng-repeat="note in exampleArray | orderBy:'name'" ng-show="exampleFlag&&language.indexOf(note.language)!=-1">
+				<div id="example" class="panel panel-default col-md-2 col-md-offset-1">
+				<div class="panel-heading"><p style="color:#3c44af;">{{note.type| uppercase}} NOTEBOOK </p><h5><strong>{{note.name}}</strong></h5></div>
+				<div class="panel-body"><strong>Language</strong><br><h4><small>{{note.language}}</small></h4></div>
+				</div>
+			</div>
+		</div>
+	
+</body>
+</html>
